@@ -19,8 +19,23 @@ PS..: The database has already been populated by docker-database-init.db file wi
 
 # Available Routes
 
-`GET "/"`
+## GET
+List Personalities
 
-`GET "/api/personalities"`
+```
+curl -v -X GET http://localhost:8000/api/personalities -H 'Content-Type: application/json'
+```
 
-`GET "/api/personalities/{id}"`
+Fetch Personality by id
+
+```
+curl -v -X GET http://localhost:8000/api/personalities/1 -H 'Content-Type: application/json'
+```
+
+## POST 
+
+Create Personality
+
+```
+curl -v -X POST http://localhost:8000/api/personalities -H 'Content-Type: application/json' -d '{"name":<personality_name>,"history":<personality_history>}'
+```
