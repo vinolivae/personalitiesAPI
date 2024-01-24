@@ -29,7 +29,7 @@ curl -v -X GET http://localhost:8000/api/personalities -H 'Content-Type: applica
 Fetch Personality by id
 
 ```
-curl -v -X GET http://localhost:8000/api/personalities/1 -H 'Content-Type: application/json'
+curl -v -X GET http://localhost:8000/api/personalities/{id} -H 'Content-Type: application/json'
 ```
 
 ## POST 
@@ -38,4 +38,20 @@ Create Personality
 
 ```
 curl -v -X POST http://localhost:8000/api/personalities -H 'Content-Type: application/json' -d '{"name":<personality_name>,"history":<personality_history>}'
+```
+
+## DELETE
+
+Delete Personality
+
+```
+curl -v -X DELETE http://localhost:8000/api/personalities/{id} -H 'Content-Type: application/json'
+```
+
+## PUT
+
+Update personality
+
+```
+curl -v -X PUT http://localhost:8000/api/personalities{id} -H 'Content-Type: application/json' -d '{"name":<personality_name>,"history":<personality_history>}'
 ```
