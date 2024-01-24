@@ -33,3 +33,36 @@ func DetailPersonality(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(personality)
 }
+
+func CreatePersonality(w http.ResponseWriter, r *http.Request) {
+	var personality m.Personality
+
+	//vamos decodar o body que recebemos via interface pro gorm enviar pro banco
+	json.NewDecoder(r.Body).Decode(&personality)
+	db.DB.Create(&personality)
+
+	json.NewEncoder(w).Encode(personality)
+}
+
+func DeletePersonality(w http.ResponseWriter, r *http.Request) {
+	var personality m.Personality
+
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	db.DB.Delete(&personality, id)
+	json.NewEncoder(w).Encode(personality)
+}
+
+func UpdatePersonality(w http.ResponseWriter, r *http.Request) {
+	var personality m.Personality
+
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	db.DB.First(&personality, id)
+	json.NewDecoder(r.Body).Decode(&personality)
+	db.DB.Save(&personality)
+
+	json.NewEncoder(w).Encode(personality)
+}
